@@ -6,4 +6,7 @@
     <select id="selectRolesByAid" resultType="Role">
       select *  from tc_role where id  in (select rid from tc_admin_role where aid = #{aid})
     </select>
+    <insert id="insertRole" parameterType="role">
+     insert into tc_role(rname,by001,by002,by003,by004,createuser,createtime,updateuser,updatetime)"+"values(#{rname},#{by001},null,null,null,null,null,null,null)
+    </insert>
 </mapper>
