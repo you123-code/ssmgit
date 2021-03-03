@@ -6,7 +6,23 @@
     <select id="selectRolesByAid" resultType="Role">
       select *  from tc_role where id  in (select rid from tc_admin_role where aid = #{aid})
     </select>
-    <insert id="insertRole" parameterType="role">
-     insert into tc_role(rname,by001,by002,by003,by004,createuser,createtime,updateuser,updatetime)"+"values(#{rname},#{by001},null,null,null,null,null,null,null)
+
+    <insert id="insertRole" parameterType="Role">
+     insert into tc_role(rname,by001,by002,by003,by004,createuser,createtime,updateuser,updatetime)values(#{rname},#{by001},null,null,null,null,null,null,null)
     </insert>
+
+    <select id="selectRoleByRname" resultType="Role">
+        select * from tc_role where rname = #{rname}
+    </select>
+
+    <insert id="insertRolePriv" parameterType="Role">
+        insert into tc_role_priv values
+        <foreach item = "priv" collection = "lp" separator=",">
+          (null,#{id},#{priv.pid},null,null,null,null)
+        </foreach>
+    </insert>
+
+    <select id="selectAdminsByRid" resultType="Role">
+        select * from tc_role where id = #{id}
+    </select>
 </mapper>

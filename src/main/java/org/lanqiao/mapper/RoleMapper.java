@@ -20,7 +20,7 @@ public interface RoleMapper {
      * @param rname
      * @return
      */
-    Role selectRoleByRname(String rname);
+    Role selectRoleByRname(Role role);
     /**
      * 添加角色
      * @param role

@@ -44,7 +44,7 @@ public class RoleServiceImpl implements RoleService {
 	public boolean insertRole(Role role) {
 		//未用事务消除风险
 		int i  = roleDao.insertRole(role);
-		Role r = roleDao.selectRoleByRname(role.getRname());
+		Role r = roleDao.selectRoleByRname(role);
 		//把数据库中查询到的rid放入到role中，可以在关联表中关联
 		role.setId(r.getId());
 		int j = roleDao.insertRolePriv(role);
