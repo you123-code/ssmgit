@@ -23,6 +23,15 @@
     </insert>
 
     <select id="selectAdminsByRid" resultType="Role">
-        select * from tc_role where id = #{id}
+        select * from tc_admin_role where rid = #{rid}
     </select>
+
+    <delete id="deleteRolePrivsByRid">
+        delete from tc_role_priv where rid = #{rid}
+    </delete>
+
+    <delete id="deleteRoleByRid" >
+        delete from tc_role where id = #{rid}
+    </delete>
+
 </mapper>

@@ -17,7 +17,7 @@ public interface RoleMapper {
     List<Role> selectAllRoles();
     /**
      * 根据角色名称rname查询
-     * @param rname
+     * @param role
      * @return
      */
     Role selectRoleByRname(Role role);

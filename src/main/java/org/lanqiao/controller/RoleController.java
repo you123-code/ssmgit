@@ -73,5 +73,17 @@ public class RoleController {
         }
         return "redirect:/role/showAddRole.do";
     }
+    @RequestMapping ("/role/roleDel.do")
+    public String roleDelAction(HttpServletRequest request){
+        String rid = request.getParameter("rid");
+        System.out.println("RoleDelAction" + rid);
+        boolean b = roleService .deleteRole(Integer.parseInt(rid));
+        if (b) {
+            request.setAttribute("state", "1");
+        } else {
+            request.setAttribute("state", "0");
+        }
+        return ("redirect:/role/roleListAction.do");
+    }
 }
 

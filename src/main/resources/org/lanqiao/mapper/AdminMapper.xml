@@ -13,4 +13,5 @@
         update tc_admin set  aname = #{aname} , atel =#{atel} , aemail = #{aemail} where id = #{id}
     </update>
 
+
 </mapper>

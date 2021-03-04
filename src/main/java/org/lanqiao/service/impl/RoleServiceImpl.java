@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.lanqiao.entity.Priv;
 import org.lanqiao.entity.Role;
+import org.lanqiao.mapper.AdminMapper;
 import org.lanqiao.mapper.PrivMapper;
 import org.lanqiao.mapper.RoleMapper;
 import org.lanqiao.service.RoleService;
@@ -17,6 +18,8 @@ public class RoleServiceImpl implements RoleService {
 	RoleMapper roleDao ;
 	@Autowired
     PrivMapper privDao ;
+	@Autowired
+	AdminMapper adminDao;
 	@Override
 	public List<Role> getAllRoles() {
 		List<Role> list = roleDao.selectAllRoles();
@@ -53,7 +56,6 @@ public class RoleServiceImpl implements RoleService {
 
 	public boolean deleteRole(Integer rid) {
 	    boolean b = roleDao.selectAdminsByRid(rid);
-	  /* */
 	    if(!b) {
 	        int i =	roleDao.deleteRolePrivsByRid(rid);
 	    	int j = roleDao.deleteRoleByRid(rid);
