@@ -77,4 +77,9 @@ public class RoleServiceImpl implements RoleService {
 		int k = roleDao.insertRolePriv(role);
 		return  i > 0 && j > 0 && k > 0 ;
 	}
+
+	@Override
+	public List<Role> selectRoleByAid(String aid) {
+		return roleDao.selectRolesByAid(Integer.parseInt(aid));
+	}
 }

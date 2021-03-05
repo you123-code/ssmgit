@@ -11,7 +11,7 @@ public class Admin {
 	private String acname;
 	private String atel;
 	private String aemail;
-	private byte aimg;
+	private String aimg;
 	private String by001;
 	private String by002;
 	private int by003;
@@ -45,7 +45,7 @@ public class Admin {
 	public Admin() {
 	}
 
-	public Admin(int id, String aname, String apwd, String acname, String atel, String aemail, byte aimg, String by001,
+	public Admin(int id, String aname, String apwd, String acname, String atel, String aemail, String aimg, String by001,
 			String by002, int by003, Date by004, Date createtime, String createuser, Date updatetime,
 			String updateuser) {
 		super();
@@ -122,11 +122,11 @@ public class Admin {
 		this.aemail = aemail;
 	}
 
-	public byte getAimg() {
+	public String getAimg() {
 		return aimg;
 	}
 
-	public void setAimg(byte aimg) {
+	public void setAimg(String aimg) {
 		this.aimg = aimg;
 	}
 

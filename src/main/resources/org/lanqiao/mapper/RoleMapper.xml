@@ -11,6 +11,7 @@
      insert into tc_role(rname,by001,by002,by003,by004,createuser,createtime,updateuser,updatetime)values(#{rname},#{by001},null,null,null,null,null,null,null)
     </insert>
 
+
     <select id="selectRoleByRname" resultType="Role">
         select * from tc_role where rname = #{rname}
     </select>
@@ -22,6 +23,7 @@
         </foreach>
     </insert>
 
+    <!--删除角色-->
     <select id="selectAdminsByRid" resultType="Role">
         select * from tc_admin_role where rid = #{rid}
     </select>
@@ -34,4 +36,12 @@
         delete from tc_role where id = #{rid}
     </delete>
 
+    <!--修改角色-->
+    <select id="selectRoleByRid" resultType="Role">
+		select * from tc_role where id=#{rid}
+	</select>
+
+    <update id="updateRole">
+		update tc_role set rname = #{rname} where id = #{id}
+	</update>
 </mapper>

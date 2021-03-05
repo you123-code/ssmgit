@@ -85,5 +85,40 @@ public class RoleController {
         }
         return ("redirect:/role/roleListAction.do");
     }
+    // 修改角色信息
+    @RequestMapping("/role/showUpdateRole.do")
+    public String showUpdateRole(HttpServletRequest request){
+        String rid = request.getParameter("rid");
+        Role role = roleService.getRoleByRid(Integer.parseInt(rid));
+        List<Priv> lp = privService.getAllPrivs();
+        request.setAttribute("role",role);
+        request.setAttribute("lp",lp);
+        return  "/role/role_modi";
+    }
+    @RequestMapping("/role/updateRole.do")
+    public String updateRole(HttpServletRequest request){
+        String rid = request.getParameter("rid");
+        String rname = request.getParameter("rname");
+        String[] privs = request.getParameterValues("privs");
+        Role role = new Role();
+        role.setId(Integer.parseInt(rid));
+        role.setRname(rname);
+
+        List<Priv> lp = new ArrayList<Priv>();
+        for(String p : privs){
+            Priv priv = new Priv(Integer.parseInt(p));
+            lp.add(priv);
+        }
+        role.setLp(lp);
+        boolean b = roleService.updateRole(role);
+        if(b){
+            // 删除成功
+            request.setAttribute("state","1");
+        }else{
+            // 删除失败
+            request.setAttribute("state","0");
+        }
+        return "redirect:/role/showAddRole.do";
+    }
 }
 

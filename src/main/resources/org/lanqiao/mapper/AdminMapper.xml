@@ -3,15 +3,59 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.lanqiao.mapper.AdminMapper">
+    <!--登录功能-->
     <select id="selectAdminByAcnameAndApwd" resultType="Admin">
         select * from tc_admin where  acname=#{acname} and apwd=#{apwd}
     </select>
+    <!--修改密码-->
     <update id="updateAdminPwd" parameterType="Admin">
         update tc_admin set apwd = #{apwd} where id = #{id}
     </update>
+    <!--修改个人信息-->
     <update id="updateAdminInfo" parameterType="Admin">
         update tc_admin set  aname = #{aname} , atel =#{atel} , aemail = #{aemail} where id = #{id}
     </update>
 
+    <!--查询所有管理员信息-->
+    <select id="selectAllAdmins" resultType="Admin">
+        select * from tc_admin
+    </select>
+    <!-- 增加管理员-->
+    <insert id="insertAdmin" >
+        insert into tc_admin(aname,apwd,acname,atel,aemail,aimg) values (#{aname},#{apwd},#{acname},#{atel},#{aemail},#{aimg})
+    </insert>
+    <!--增加管理员角色-->
+    <insert id="insertAdminRole">
+        insert  into tc_admin_role values
+        <foreach item="role" collection="lr" separator=",">
+            (null,
+            #{id},
+            #{role.id},
+            null,
+            null,
+            null,
+            null
+            )
+        </foreach>
+    </insert>
+    <select id="selectAdminbyaname" resultType="Admin">
+        select * from tc_admin where aname = #{aname}
+    </select>
+    <!--删除管理员-->
+    <delete id="delAdmin">
+        delete from tc_admin where id=#{id}
+    </delete>
+    <!--删除关联表-->
+    <delete id="delAdminRole">
+        delete from tc_admin_role where aid = #{id}
+    </delete>
+    <!-- 修改管理员-->
+    <update id="updateAdmin">
+        update tc_admin set aname=#{aname},acname=#{acname},atel=#{atel},aemail=#{aemail} where id=#{id}
+    </update>
+    <!--通过id查询的管理员-->
+    <select id="selectAdminByid" resultType="Admin">
+        select * from tc_admin where id=#{id}
+    </select>
 
 </mapper>

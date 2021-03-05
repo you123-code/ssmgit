@@ -44,4 +44,5 @@ public interface RoleService {
      * @return
      */
     boolean updateRole(Role role);
+    List<Role> selectRoleByAid(String aid);
 }

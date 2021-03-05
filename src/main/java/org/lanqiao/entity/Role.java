@@ -17,7 +17,11 @@ public class Role {
 	private Date updatetime;
 	
 	private List<Priv> lp;
-    
+
+	public Role(Integer id) {
+		this.id=id;
+	}
+
 	public String getPrivs() {
 		String s = "";
 		if(lp != null) {
